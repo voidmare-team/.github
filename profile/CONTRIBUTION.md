@@ -77,3 +77,41 @@ err_t slice_init(slice_t *slice, size_t initial_cap);
 - All packages must have a package comment describing their purpose.
 - All exported identifiers must have documentation comments.
 - Exported APIs intended for external use must include examples when usage is non-trivial.
+
+## Style code
+
+### When you write C code
+- The projects inside `voidmare-team` organization must use the same `.clang-format`:
+```yaml
+BasedOnStyle: LLVM
+IndentWidth: 2
+UseTab: Always
+BreakBeforeBraces: Allman
+SpaceAfterCStyleCast: false
+IndentExternBlock: NoIndent
+```
+- To make sure your code follows this style, use `clang-format` to format code.
+
+### When you write Go code
+- The projects must follow idiomatic Go style principles.
+- Use `gofmt` or extensions to make sure your code follows these principles.
+
+## Code writing
+- When you write code, always put the following copyright notice at the start of the file:
+```c
+// Copyright 2026 VOIDMARE Team
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//    http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+```
+- Use the existing tools, which are much stable and safer. Don't try to make your own, only if required.
+  
