@@ -9,7 +9,8 @@ You're always welcome to contribute and suggest improvements to our tools, libra
 
 ### When you write C code
 - Write documentation as short as possible, but still keep it informative and consistent.
-- If you need to write special notes, write it in `Notes` section:
+- All below rules are related to structures, types, functions and variables.
+- If you need to write special notes, or you need to tell about non-obvious behavior, write it in `Notes` section.
 ```c
 // Adds two numbers and returns the result.
 //
@@ -24,7 +25,7 @@ int add(int x, int y) {
   // ...
 }
 ```
-- Write about errors the function returns in some cases:
+- Write about errors the function returns in some cases in `Error codes`.  Don't document about `err_ok` or something simillar, this error code is already telling us everything is okay:
 ```c
 // Divides a by b.
 //
@@ -38,3 +39,41 @@ err_t add(int a, int b) {
   return err_ok;
 }
 ```
+- Write about the parameters in `Parameters`:
+```c
+// Prints number into console.
+//
+// Parameters:
+// - num: Number to print.
+void print(int num) {
+  printf("%d", num);
+}
+```
+- In total:
+```c
+
+// Represents the dynamic array, which is safer and faster
+// to use.
+typedef struct slice [
+  char *data;
+  size_t size;
+  size_t capacity;
+} slice_t;  
+
+// Initializes a pointer to slice_t.
+//
+// Parameters:
+// - slice: A pointer to initialize.
+// - initial_cap: Initial capacity.
+//
+// Notes:
+// - initial_cap only allocates memory; it does NOT initialize elements.
+err_t slice_init(slice_t *slice, size_t initial_cap);
+
+```
+
+### When you write Go code
+- Go documentation must follow idiomatic Go principles as described in https://go.dev/doc/comment.
+- All packages must have a package comment describing their purpose.
+- All exported identifiers must have documentation comments.
+- Exported APIs intended for external use must include examples when usage is non-trivial.
