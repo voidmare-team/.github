@@ -153,8 +153,8 @@ IndentExternBlock: NoIndent
 - Sub header must not include the master header to prevent circular depedency.
 
 #### Internal header
-- Internal header that are reused across the library go into `<master-header>/internal/` directory.
-- Organize functionality in this format: `internal/<scope (may be recursive)>/<header>.h`
+- Internal header that is reused across the library go into `<master-header>/internal/` directory.
+- You must organize functionality in this format: `internal/<scope (may be recursive)>/<header>.h`
 - Internal header is considered sub-header, but they're not included in public master header. 
 
 #### Example
