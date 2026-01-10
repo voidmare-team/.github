@@ -70,15 +70,15 @@ typedef struct slice [
 // - initial_cap only allocates memory; it does NOT initialize elements.
 err_t slice_init(slice_t *slice, size_t initial_cap);
 ```
-- In the start of every C header, write a short overview of the header:
+- In the start of every sub-header, write a short overview of it:
 ```c
 // ========================================
 // Declarations related to arithmetic
 // operations. 
 // ========================================
 
-#ifndef _VOIDMARE_FOO_H
-#define _VOIDMARE_FOO_H
+#ifndef _VOIDMARE_FOO_MATH_H
+#define _VOIDMARE_FOO_MATH_H
 
 // ... 
 ``` 
@@ -108,6 +108,8 @@ IndentExternBlock: NoIndent
 - Use `gofmt` or extensions to make sure your code follows these principles.
 
 ## Code writing
+
+### General
 - When you write code, always put the following copyright notice at the start of the file:
 ```c
 // Copyright 2026 VOIDMARE Team
@@ -125,4 +127,58 @@ IndentExternBlock: NoIndent
 // limitations under the License.
 ```
 - Use the existing tools, which are much stable and safer. Don't try to make your own, unless required.
-  
+
+## Organization
+
+### When you write C code
+- All C libraries and tools in `voidmare-team` go into `voidmare/` directory.
+- The C code defines two types of headers: **master header** and **sub header**.
+
+#### Master header
+- Master header has its own directory with sub-headers.
+- Master header must be unique and don't collide with others in `voidmare/` directory.
+- Master header represents only one library or tool. 
+- Master header includes all its sub-headers inside from its directory.
+- Master header must be created inside `voidmare/` directory and always out of its own.
+- Example layout:
+```
+-- voidmare/
+-- -- -- foo/
+-- -- foo.h
+```
+
+#### Sub header
+- Sub header covers only one topic-related functionality, which maintains modular and scalable design.
+- Sub header can include other sub-headers.
+- Sub header must not include the master header to prevent circular depedency.
+
+#### Internal header
+- Internal header that are reused across the library go into `<master-header>/internal/` directory.
+- Organize functionality in this format: `internal/<scope (may be recursive)>/<header>.h`
+- Internal header is considered sub-header, but they're not included in public master header. 
+
+#### Example
+
+- Here's how you can organize them:
+```
+include/
+-- voidmare/
+-- -- foo/
+-- -- -- math.h
+-- -- -- result.h
+-- -- foo.h
+```
+
+foo.h:
+```
+#ifndef _VOIDMARE_FOO_H
+#define _VOIDMARE_FOO_H
+
+#include "math.h"
+#include "result.h"
+
+#endif
+```
+
+### When you write Go code
+- The projects must follow idiomatic Go code organization principles.
