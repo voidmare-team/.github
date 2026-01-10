@@ -69,8 +69,19 @@ typedef struct slice [
 // Notes:
 // - initial_cap only allocates memory; it does NOT initialize elements.
 err_t slice_init(slice_t *slice, size_t initial_cap);
-
 ```
+- In the start of every C header, write a short overview of the header:
+```c
+// ========================================
+// Declarations related to arithmetic
+// operations. 
+// ========================================
+
+#ifndef _VOIDMARE_FOO_H
+#define _VOIDMARE_FOO_H
+
+// ... 
+``` 
 
 ### When you write Go code
 - Go documentation must follow idiomatic Go principles as described in https://go.dev/doc/comment.
@@ -81,7 +92,7 @@ err_t slice_init(slice_t *slice, size_t initial_cap);
 ## Style code
 
 ### When you write C code
-- The projects inside `voidmare-team` organization must use the same `.clang-format`:
+- The projects inside `voidmare-team` must use the same `.clang-format`:
 ```yaml
 BasedOnStyle: LLVM
 IndentWidth: 2
@@ -113,5 +124,5 @@ IndentExternBlock: NoIndent
 // See the License for the specific language governing permissions and
 // limitations under the License.
 ```
-- Use the existing tools, which are much stable and safer. Don't try to make your own, only if required.
+- Use the existing tools, which are much stable and safer. Don't try to make your own, unless required.
   
