@@ -170,7 +170,7 @@ include/
 ```
 
 foo.h:
-```
+```c
 #ifndef _VOIDMARE_FOO_H
 #define _VOIDMARE_FOO_H
 
