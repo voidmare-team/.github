@@ -174,8 +174,8 @@ foo.h:
 #ifndef _VOIDMARE_FOO_H
 #define _VOIDMARE_FOO_H
 
-#include "math.h"
-#include "result.h"
+#include "foo/math.h"
+#include "foo/result.h"
 
 #endif
 ```
